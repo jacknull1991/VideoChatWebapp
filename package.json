@@ -1,0 +1,29 @@
+{
+  "name": "videochatwebapp",
+  "version": "1.0.0",
+  "description": "video chat app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "watch": "npx watchify ./public/index.js -o ./public/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacknull1991/VideoChatWebapp.git"
+  },
+  "author": "JackNull",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacknull1991/VideoChatWebapp/issues"
+  },
+  "homepage": "https://github.com/jacknull1991/VideoChatWebapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "simple-peer": "^9.7.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "watchify": "^3.11.1"
+  }
+}
