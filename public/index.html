@@ -7,21 +7,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<style>
+		html, body {
+		  	height: 100%;
+		}
+		.fill {
+			height: 100%;
+			min-height: 80%;
+		}
 		.select {
 			height: 30px;
 		}
-		.h-90 {
-			height: 90% !important;
+		.h-50 {
+			height: 80% !important;
 		}
 		.h-10 {
 			height: 10% !important;
 		}
+		.h-40 {
+			height: 40% !important;
+		}
 	</style>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid fill">
 
-		<div class="row h-90 w-100">
+		<div class="row h-50 w-100">
 			<div class="col-12 col-sm-6 d-flex justify-content-center">
 				<div class="embed-responsive embed-responsive-16by9">
 					<video class="embed-responsive-item" muted></video>
@@ -34,16 +44,25 @@
 		</div>
 
 		<div class="row h-10 w-100">
-			<select id="filter" class="w-50 bg-dark text-light ml-2 mt-2 select font-weight-bold border">
-				<option value="none">Normal</option>
-				<option value="grayscale(100%)">Black & White</option>
-				<option value="sepia(100%)">Old Fashion</option>
-				<option value="contrast(150%)">Lumination</option>
-				<option value="blur(20px)">Blur</option>
-				<option value="invert(100%)">Invert</option>
-				<option value="saturate(25)">Saturated</option>
-			</select>
+			<div class="btn-group w-50">
+				<select id="filter" class="w-100 bg-dark text-light ml-2 mt-2 mr-2 select font-weight-bold border">
+					<option value="none">Normal</option>
+					<option value="grayscale(100%)">Black & White</option>
+					<option value="sepia(100%)">Old Fashion</option>
+					<option value="contrast(150%)">Lumination</option>
+					<option value="blur(20px)">Blur</option>
+					<option value="invert(100%)">Invert</option>
+					<option value="saturate(25)">Saturated</option>
+				</select>
+			</div>
+				
 		</div>
+
+		<!--<div class="row h-40 w-100">
+			<div class="col-12 col-sm-6 d-flex justify-content-center">
+				
+			</div>
+		</div>-->
 	</div>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="bundle.js"></script>
