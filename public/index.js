@@ -2,8 +2,10 @@ let Peer = require('simple-peer')
 let socket = io()
 
 const video = document.querySelector('video')
-let client = {}
+const filter = document.querySelector('#filter')
 
+let client = {}
+let currentFilter
 // video stream
 // ask for user permission
 navigator.mediaDevices.getUserMedia({video: true, audio: true})
@@ -11,6 +13,13 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 		socket.emit('NewClient')
 		video.srcObject = stream
 		video.play()
+
+		filter.addEventListener('change', (event) => {
+			currentFilter = event.target.value
+			video.style.filter = currentFilter
+			SendFilter(currentFilter)
+			event.preventDefault
+		})
 
 		// initialize peer stream
 		function InitPeer(type) {
@@ -23,6 +32,11 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 				peer.destroy()
 
 			})*/
+			peer.on('data', function(data) {
+				let peerFilter = new TextDecoder('utf-8').decode(data)
+				let peervideo = document.querySelector("#peerVideo")
+				peervideo.style.filter = peerFilter
+			})
 			return peer
 		}
 
@@ -49,6 +63,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 				socket.emit('Answer', data)
 			})
 			peer.signal(offer)
+			client.peer = peer
 		}
 
 		// handle answer from backend
@@ -66,10 +81,17 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 			video.class = 'embed-responsive-item'
 			document.querySelector('#peerDiv').appendChild(video)
 			video.play()
+			SendFilter(currentFilter)
 		}
 
 		function SessionActive() {
 			document.write("Session active. Come back later")
+		}
+
+		function SendFilter(filter) {
+			if (client.peer) {
+				client.peer.send(filter)
+			}
 		}
 
 		socket.on('BackOffer', FrontAnswer)
