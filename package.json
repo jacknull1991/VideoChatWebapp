@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.3",
     "simple-peer": "^9.7.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "watchify": "^3.11.1"
